@@ -22,7 +22,7 @@ public:
     void setOption(const std::pmr::vector<std::string_view> &option);
     void setOffset(const int &offset);
 
-    [[nodiscard]] int choiceOption() const;
+    [[nodiscard]] int choiceOptions() const;
 
     [[nodiscard]] std::string getLine(std::string_view question);
 };

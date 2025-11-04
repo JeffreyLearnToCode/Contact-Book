@@ -23,12 +23,13 @@ void Menu::printOption() const {
     }
 };
 
-int Menu::choiceOption() const {
+int Menu::choiceOptions() const {
     const int low = (static_cast<int>(option_.size()) - static_cast<int>(option_.size())) + offset_;
     const int high = static_cast<int>(option_.size()) + 1;
 
     for (;;) {
         this->printOption();
+        std::cout << "Please make a pick: ";
         if (int d; std::cin >> d && low <= d && d <= high) {
             return d;
         }
@@ -43,13 +44,13 @@ std::string Menu::getLine(const std::string_view question) {
     for (;;) {
         std::cout << question << ": ";
 
-        if (std::string d; std::getline(std::cin, d) &&
+        if (std::string d; std::getline(std::cin >> std::ws, d) &&
             !d.empty()) {
             return d;
         }
 
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Please pick the correct options" << std::endl;
+        std::cout << "Please try again!" << std::endl;
     }
 }
