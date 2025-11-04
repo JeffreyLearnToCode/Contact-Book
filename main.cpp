@@ -1,24 +1,34 @@
 #include <iostream>
 #include "Contact.h"
+#include "Menu.h"
 
 int main() {
     std::cout << "Welcome to Contact!\n\n";
 
-    std::cout << "Please enter name: ";
-    std::string name;
-    std::getline(std::cin, name);
+    const std::pmr::vector<std::string_view> options = {"Enter new Contact", "Find Contact",
+        "Delete Contact", "Edit Contact"};
+    constexpr int OFFSET = 1;
 
-    std::cout << "Please enter phone number: ";
-    std::string phone_number;
-    std::getline(std::cin, phone_number);
+    auto mainMenu = Menu(options, OFFSET);
 
-    std::cout << "Please enter email: ";
-    std::string email;
-    std::getline(std::cin, email);
+    do {
+        const int choice = mainMenu.choiceOptions();
 
-    const auto contact =  Contact(name, phone_number, email);
+        if (choice == 1) {
+            const std::string name = mainMenu.getLine("Please enter your name");
+            const std::string phone_number = mainMenu.getLine("Please enter your phone number");
+            const std::string email = mainMenu.getLine("Please enter your email");
 
-    contact.print();
+            const auto contact =  Contact(name, phone_number, email);
+
+            contact.print();
+        }
+
+        if (choice == 2) {
+            break;
+        }
+
+    }while (true);
 
     return 0;
 }
