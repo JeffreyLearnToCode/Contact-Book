@@ -5,8 +5,10 @@
 #include "Contact.h"
 
 Contact::Contact(const std::string_view name, const std::string_view phoneNumber, const std::string_view email)
-    : name_(name), phone_(phoneNumber), email_(email)
-{}
+    : name_(name), phone_(phoneNumber), email_(email) {
+}
+
+Contact::Contact(){}
 
 void Contact::setEmail(const std::string_view email) {
     this->email_ = email;

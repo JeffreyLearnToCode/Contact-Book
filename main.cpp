@@ -8,6 +8,7 @@ int main() {
     const std::pmr::vector<std::string_view> options = {"Enter new Contact", "Find Contact",
         "Delete Contact", "Edit Contact"};
     constexpr int OFFSET = 1;
+    std::pmr::vector<Contact> contacts;
 
     auto mainMenu = Menu(options, OFFSET);
 
@@ -22,6 +23,8 @@ int main() {
             const auto contact =  Contact(name, phone_number, email);
 
             contact.print();
+
+            contacts.emplace_back(contact);
         }
 
         if (choice == 2) {
