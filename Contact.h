@@ -21,7 +21,7 @@ public:
     Contact();
 
     void setName(std::string_view name);
-    std::string_view getName();
+    std::string getName();
 
     void setPhoneNumber(std::string_view phoneNumber);
     std::string_view getPhoneNumber();

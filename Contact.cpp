@@ -31,7 +31,7 @@ void Contact::print() const {
     std::cout << "Email: " << email_ << std::endl;
 }
 
-std::string_view Contact::getName() {
+std::string Contact::getName() {
     return name_;
 }
 

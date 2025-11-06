@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Contact.h"
 #include "Menu.h"
+#include <algorithm>
 
 int main() {
     std::cout << "Welcome to Contact!\n\n";
@@ -21,14 +22,23 @@ int main() {
             const std::string email = mainMenu.getLine("Please enter your email");
 
             const auto contact =  Contact(name, phone_number, email);
+            contacts.emplace_back(name, phone_number, email);
 
             contact.print();
 
-            contacts.emplace_back(contact);
         }
 
         if (choice == 2) {
-            break;
+            const std::string name = mainMenu.getLine("Please find user by name: ");
+            auto it = std::find_if(contacts.begin(), contacts.end(), [&](Contact &c) {
+                return c.getName() == name;
+            });
+
+            if (it != contacts.end()) {
+                it->print();
+            }else {
+                std::cout << "Please enter a valid name!\n";
+            }
         }
 
     }while (true);
